@@ -1,0 +1,21 @@
+sudo: required
+
+language: node_js
+
+node_js:
+  - "6"
+
+services:
+  - docker
+
+install:
+  - npm install
+
+script:
+  - gulp
+  - docker build -t qinling/jenkinsassistant:latest .
+
+after_success:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker push qinling/jenkinsassistant:latest
+  - docker logout
