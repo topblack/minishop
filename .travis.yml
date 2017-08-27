@@ -10,7 +10,7 @@ before_install:
   -in build/ssh.key.enc -out build/ssh.key -d
 script:
 - cd ui; npm install; ng build -prod; cd ..
-- cd service; npm install; tsc; cd ..
+- cd service; npm install; gulp; cd ..
 - docker build -t $DOCKER_IMAGE -f build/Dockerfile .
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - docker push $DOCKER_IMAGE
