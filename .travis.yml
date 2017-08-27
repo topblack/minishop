@@ -16,6 +16,7 @@ script:
 - docker push $DOCKER_IMAGE
 - docker logout
 after_success:
+- chmod 600 build/ssh.key
 - scp -o StrictHostKeyChecking=no -i build/ssh.key build/deploy.sh ubuntu@vm.qinling.io:/tmp/deploy-minishop.sh
 - ssh -o StrictHostKeyChecking=no -i build/ssh.key ubuntu@vm.qinling.io /bin/bash /tmp/deploy-minishop.sh
 notification:
