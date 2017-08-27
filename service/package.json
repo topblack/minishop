@@ -1,0 +1,19 @@
+{
+  "name": "minishop-service",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "serve": "node dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^8.0.25",
+    "express": "^4.15.4",
+    "promise": "^8.0.1",
+    "require": "^2.4.20"
+  }
+}
