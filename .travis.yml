@@ -16,8 +16,8 @@ script:
 - docker push $DOCKER_IMAGE
 - docker logout
 after_success:
-- scp -q -i build/ssh.key build/deploy.sh ubuntu@$TARGET_ENV_ADDR:/tmp/deploy-minishop.sh
-- ssh -q -i build/ssh.key ubuntu@$TARGET_ENV_ADDR /bin/bash /tmp/deploy-minishop.sh
+- scp -q -o StrictHostKeyChecking=no -i build/ssh.key build/deploy.sh ubuntu@$TARGET_ENV_ADDR:/tmp/deploy-minishop.sh
+- ssh -q -o StrictHostKeyChecking=no -i build/ssh.key ubuntu@$TARGET_ENV_ADDR /bin/bash /tmp/deploy-minishop.sh
 notification:
 - email:
   - recipients:
