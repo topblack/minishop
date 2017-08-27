@@ -7,18 +7,18 @@ services:
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_4da09d2c092c_key -iv $encrypted_4da09d2c092c_iv
-  -in deploy/ssh.key.enc -out deploy/ssh.key -d
+  -in build/ssh.key.enc -out build/ssh.key -d
 install:
 - npm install
 script:
 - cd ui;ng build -prod
 - cd service;tsc
-- docker build -t $DOCKER_IMAGE - < deploy/Dockerfile
+- docker build -t $DOCKER_IMAGE - < build/Dockerfile
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - docker push $DOCKER_IMAGE
 - docker logout
 after_success:
-- scp -q -i ssh.key deploy/deploy.sh ubuntu@$TARGET_ENV_ADDR:/tmp/deploy-minishop.sh
+- scp -q -i ssh.key build/deploy.sh ubuntu@$TARGET_ENV_ADDR:/tmp/deploy-minishop.sh
 - ssh -i ssh.key ubuntu@$TARGET_ENV_ADDR /bin/bash /tmp/deploy-minishop.sh
 notification:
 - email:
