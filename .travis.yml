@@ -5,6 +5,10 @@ node_js:
 services:
 - docker
 
+branches:
+- only:
+  - master
+
 before_install:
 - openssl aes-256-cbc -K $encrypted_4da09d2c092c_key -iv $encrypted_4da09d2c092c_iv
   -in build/ssh.key.enc -out build/ssh.key -d
