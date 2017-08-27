@@ -8,14 +8,23 @@ node_js:
 services:
   - docker
 
+env:
+  - DOCKER_IMAGE=qinling/minishop
+  - TARGET_ENV_ADDR=vm.qinling.io
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_414c18bd42dd_key -iv $encrypted_414c18bd42dd_iv -in ssh.key.enc -out ssh.key -d
+
 install:
   - npm install
 
 script:
   - gulp
-  - docker build -t qinling/jenkinsassistant:latest .
+  - docker build -t $DOCKER_IMAGE:latest .
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker push $DOCKER_IMAGE:latest
+  - docker logout
 
 after_success:
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker push qinling/jenkinsassistant:latest
-  - docker logout
+
+  - ssh -i ssh.key ubuntu@$TARGET_ENV_ADDR docker run 

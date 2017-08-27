@@ -1,9 +1,8 @@
 FROM qinling/nodejs
 EXPOSE 80
 
-ADD dist/* /jenkins-assistant/
-ADD lib/* /jenkins-assistant/
-ADD node_modules /jenkins-assistant/node_modules/
-WORKDIR /jenkins-assistant
+ADD dist/* /app/
+ADD node_modules /app/node_modules/
+WORKDIR /app
 
-ENTRYPOINT node index.js
+ENTRYPOINT node main.js
