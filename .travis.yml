@@ -9,8 +9,8 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_4da09d2c092c_key -iv $encrypted_4da09d2c092c_iv
   -in build/ssh.key.enc -out build/ssh.key -d
 script:
-- cd ui; npm install; ng build -prod
-- cd service; npm install; tsc
+- cd ui; npm install; ng build -prod; cd..
+- cd service; npm install; tsc; cd..
 - docker build -t $DOCKER_IMAGE - < build/Dockerfile
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - docker push $DOCKER_IMAGE
