@@ -1,5 +1,5 @@
 FROM qinling/nodejs
-EXPOSE 80
+EXPOSE 8080
 
 ADD ui/dist /app/ui
 ADD service/dist /app/service
