@@ -5,7 +5,7 @@ import { ShopwindowComponent } from './shopwindow/shopwindow.component';
 import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/shopwindow/account', pathMatch: 'full' },
+    { path: '', redirectTo: '/shopwindow/products', pathMatch: 'full' },
     { path: 'shopwindow/:content', component: ShopwindowComponent },
     { path: 'detail/:id', component: ProductComponent }
 ];

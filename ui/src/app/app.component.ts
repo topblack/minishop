@@ -12,7 +12,7 @@ import { ProductService } from './product.service';
 })
 
 export class AppComponent {
-  title = 'me 拼团';
+  title = 'Me 拼团';
 
 
   constructor(private productService: ProductService) { }
