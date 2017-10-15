@@ -1,0 +1,60 @@
+<weui-tabbar>
+  <!-- 团购首页 -->
+  <weui-tab heading="首页" [icon]="'<img src=./assets/images/icon/home.png>'" [active]="activeTab === 'products'">
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__hd" style="text-align: center">Me 拼团</div>
+      <div class="weui-panel__bd" *ngFor="let p of products">
+        <img class="swiperImg" src="{{p.masterImg}}" (click)="gotoDetail(p)">
+        <div class="introDiv">[{{p.name}}] {{p.intro}}</div>
+        <div class="priceDiv">
+          ￥{{p.wsPrice}}
+          <label class="originalPrice"> ￥{{p.price}}</label>
+          <label class="groupMQ">{{p.wsReq}}人团</label>
+          <button class="tBtn" weui-button [weui-mini]="'mini'" [weui-plain]="true" (click)="gotoDetail(p)">详情</button>          
+        </div>
+
+      </div>
+    </div>
+  </weui-tab>
+
+  <!-- 个人中心页 -->
+  <weui-tab heading="我的团购" [icon]="'<img src=./assets/images/icon/user.png>'" [active]="activeTab === 'account'">
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__hd">未登录</div>
+      <div class="weui-panel__bd">
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+          <div class="weui-cell__bd">
+            <p>我的订单</p>
+          </div>
+          <div class="weui-cell__ft">查看全部</div>
+        </a>
+        <weui-navbar>
+          <weui-tab heading="待成团">
+          </weui-tab>
+          <weui-tab heading="待发货" (select)="onSelect()">
+          </weui-tab>
+          <weui-tab heading="待收货">
+          </weui-tab>
+          <weui-tab heading="待评价">
+          </weui-tab>
+        </weui-navbar>
+        <div class="weui-cells">
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+              <p>收货地址</p>
+            </div>
+            <div class="weui-cell__ft">
+            </div>
+          </a>
+        </div>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+          <div class="weui-cell__bd">
+            <p>官方客服</p>
+          </div>
+          <div class="weui-cell__ft">
+          </div>
+        </a>
+      </div>
+    </div>
+  </weui-tab>
+</weui-tabbar>

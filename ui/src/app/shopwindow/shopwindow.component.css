@@ -1,0 +1,41 @@
+.swiperImg{
+    width: 100%;
+    height: 20%;
+}
+
+.productName{
+    width: 110px;
+    font-size: xx-small;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+
+.originalPrice{
+    font-size: x-small;
+    text-decoration:line-through;
+}
+
+.groupMQ{
+    font-size: x-small;
+    border: 1px;
+    border-style: solid;
+    border-color: #DFBA18;
+}
+
+.introDiv{
+    font-size: x-small;
+    text-align: center
+}
+
+.priceDiv {
+margin-top: 5px;
+margin-bottom: 5px;
+}
+
+.tBtn {
+    float: right;
+    margin-bottom: 5px;
+    vertical-align: middle;
+}
