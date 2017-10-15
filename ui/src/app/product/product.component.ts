@@ -7,6 +7,8 @@ import { Product } from '../product';
 import { Order } from '../order';
 import { ProductService } from '../product.service';
 
+import 'rxjs/add/operator/switchMap';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
