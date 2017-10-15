@@ -38,4 +38,7 @@ export class ShopwindowComponent implements OnInit {
   gotoDetail(product: Product): void {
     this.router.navigate(['/detail', product.id]);
   }
+
+  onSelect() {
+  }
 }
