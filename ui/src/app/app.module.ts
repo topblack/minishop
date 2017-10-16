@@ -9,6 +9,8 @@ import { ProductService } from './product.service';
 import { ShopwindowComponent } from './shopwindow/shopwindow.component';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AddrManagerComponent } from './addr-manager/addr-manager.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     ProductComponent,
     ShopwindowComponent,
+    AddrManagerComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,

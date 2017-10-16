@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { PopupComponent } from 'ngx-weui/popup';
 
 
@@ -8,6 +9,7 @@ import { Order } from '../order';
 import { ProductService } from '../product.service';
 
 import 'rxjs/add/operator/switchMap';
+import { User } from '../user';
 
 @Component({
   selector: 'app-product',
@@ -17,33 +19,28 @@ import 'rxjs/add/operator/switchMap';
 })
 
 export class ProductComponent implements OnInit {
-
-  @ViewChild('paymentPop') paymentPop: PopupComponent;
   product: Product;
-  _addressBarstatus = false;
+  user: User;
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
+    private location: Location
   ) {
   }
 
   ngOnInit() {
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.productService.getProductById(+params.get('id')))
+      .switchMap((params: ParamMap) => this.productService.getProductById(+params.get('pid')))
       .subscribe(product => this.product = product);
   }
 
-  gotoHome(selection: string): void {
-    this.router.navigate(['/shopwindow', selection]);
+  goBack(selection: string): void {
+    this.location.back();
   }
 
-  cancelOrder(): void {
-    this.paymentPop.hide();
-  }
-
-  addressBarOpened(): void {
-    this._addressBarstatus = !this._addressBarstatus;
+  shopNow(): void {
+    this.router.navigate(['/payment', this.product.id]);
   }
 }

@@ -1,0 +1,21 @@
+.weui-form-preview__ft{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.paymentPrice{
+    width: 50%;
+    text-align: center;    
+}
+
+.paymentDiv{
+    margin-bottom: 50px;
+}
+
+.thumbnailImg{
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}

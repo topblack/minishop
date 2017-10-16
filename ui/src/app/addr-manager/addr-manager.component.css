@@ -1,0 +1,19 @@
+.addBtn{
+    position: fixed; 
+    bottom: 0;
+}
+
+.editorDiv{
+    margin-bottom: 50px;
+}
+
+.weui-form-preview__ft{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.mini_editor{
+    width: 100%;
+    height: 10px;
+}
