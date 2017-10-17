@@ -36,7 +36,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
   }
 
-  goBack(selection: string): void {
+  goBack(): void {
     this.location.back();
   }
 
