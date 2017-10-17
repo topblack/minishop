@@ -28,12 +28,12 @@ export class ProductComponent implements OnInit {
     private router: Router,
     private location: Location
   ) {
+    this.route.paramMap
+    .switchMap((params: ParamMap) => this.productService.getProductById(params.get('pid')))
+    .subscribe(product => this.product = product);
   }
 
   ngOnInit() {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => this.productService.getProductById(params.get('pid')))
-      .subscribe(product => this.product = product);
   }
 
   goBack(selection: string): void {
