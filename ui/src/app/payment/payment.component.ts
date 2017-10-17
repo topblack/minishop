@@ -19,7 +19,7 @@ export class PaymentComponent implements OnInit {
     private location: Location
   ) {
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.productService.getProductById(+params.get('pid')))
+      .switchMap((params: ParamMap) => this.productService.getProductById(params.get('pid')))
       .subscribe(product => this.product = product);
   }
 

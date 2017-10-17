@@ -32,7 +32,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.productService.getProductById(+params.get('pid')))
+      .switchMap((params: ParamMap) => this.productService.getProductById(params.get('pid')))
       .subscribe(product => this.product = product);
   }
 

@@ -1,7 +1,7 @@
 import { User } from './user';
 
 export class Product {
-  id: number;
+  id: string;
   name: string;
   intro: string;
   description: string;
@@ -10,10 +10,10 @@ export class Product {
   unitReq: number;
   masterImg: string;
   thumbnail: string;
-  detailImgs: Array<string>;
+  detailImgs: string[];
 
   constructor(
-    iId: number,
+    iId: string,
     iName: string,
     iIntro: string,
     iDescription: string,
@@ -22,7 +22,7 @@ export class Product {
     iWsReq: number,
     iMasterImage: string,
     iThumbnail: string,
-    iDetailImgs: Array<string>) {
+    iDetailImgs: string[]) {
     this.id = iId;
     this.name = iName;
     this.intro = iIntro;

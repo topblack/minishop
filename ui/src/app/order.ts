@@ -28,6 +28,6 @@ export class Order {
      * Check if this whole sale ready to go.
      */
     public isFullfilled(): boolean {
-        return this.members.length === this.product.wsReq;
+        return this.members.length === this.product.unitReq;
     }
 }

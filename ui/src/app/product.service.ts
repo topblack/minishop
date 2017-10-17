@@ -24,13 +24,12 @@ export class ProductService {
 
     for (let i = 0; i < len; i++) {
       products[i] = PRODUCTS[i];
-      console.log(products[i]);
     }
 
     return Promise.resolve(products);
   }
 
-  getProductById(id: number): Promise<Product> {
-    return this.getAllProducts().then(products => products.find(hero => hero.id === id));
+  getProductById(pid: string): Promise<Product> {
+    return Promise.resolve(PRODUCTS.find(product => product.id === pid));
   }
 }
