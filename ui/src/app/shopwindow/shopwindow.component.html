@@ -8,9 +8,9 @@
           <img class="swiperImg" src="{{p.masterImg}}" (click)="gotoDetail(p)">
           <div class="introDiv">[{{p.name}}] {{p.intro}}</div>
           <div class="priceDiv">
-            ￥{{p.wsPrice}}
+            ￥{{p.unitPrice}}
             <label class="originalPrice"> ￥{{p.price}}</label>
-            <label class="groupMQ">{{p.wsReq}}人团</label>
+            <label class="groupMQ">{{p.unitReq}}人团</label>
             <button class="tBtn" weui-button [weui-mini]="'mini'" [weui-plain]="true" (click)="gotoDetail(p)">详情</button>
           </div>
         </div>

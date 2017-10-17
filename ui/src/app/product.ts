@@ -6,8 +6,8 @@ export class Product {
   intro: string;
   description: string;
   price: number; // 原价
-  wsPrice: number; // 团购价
-  wsReq: number;
+  unitPrice: number; // 团购价
+  unitReq: number;
   masterImg: string;
   thumbnail: string;
   detailImgs: Array<string>;
@@ -28,8 +28,8 @@ export class Product {
     this.intro = iIntro;
     this.description = iDescription;
     this.price = iPrice;
-    this.wsPrice = iWsPrice;
-    this.wsReq = iWsReq;
+    this.unitPrice = iWsPrice;
+    this.unitReq = iWsReq;
     this.masterImg = iMasterImage;
     this.thumbnail = iThumbnail;
     this.detailImgs = iDetailImgs;
