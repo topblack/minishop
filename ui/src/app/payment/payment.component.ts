@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Product } from '../product';
-import { ProductService } from '../product.service';
+import { Product } from '../models/product';
+import { ProductService } from '../service/product.service';
 
 @Component({
   selector: 'app-payment',
@@ -27,7 +27,7 @@ export class PaymentComponent implements OnInit {
   }
 
   gotoAddrManager(): void {
-    this.router.navigate(['/address', 1]);
+    this.router.navigate(['/address', '001']);
   }
 
   cancelOrder(): void {

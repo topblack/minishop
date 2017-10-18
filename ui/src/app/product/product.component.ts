@@ -4,12 +4,13 @@ import { Location } from '@angular/common';
 import { PopupComponent } from 'ngx-weui/popup';
 
 
-import { Product } from '../product';
-import { Order } from '../order';
-import { ProductService } from '../product.service';
+import { Product } from '../models/product';
+import { Order } from '../models/order';
+import { User } from '../models/user';
+import { ProductService } from '../service/product.service';
 
 import 'rxjs/add/operator/switchMap';
-import { User } from '../user';
+
 
 @Component({
   selector: 'app-product',

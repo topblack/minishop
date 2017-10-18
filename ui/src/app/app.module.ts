@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { WeUiModule } from 'ngx-weui';
 import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
-import { ProductService } from './product.service';
+import { ProductService } from './service/product.service';
+import { UserService } from './service/user.service';
 import { ShopwindowComponent } from './shopwindow/shopwindow.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,10 +26,12 @@ import { PaymentComponent } from './payment/payment.component';
   imports: [
     BrowserModule,
     WeUiModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
-    ProductService
+    ProductService,
+    UserService
   ],
 
   bootstrap: [AppComponent]

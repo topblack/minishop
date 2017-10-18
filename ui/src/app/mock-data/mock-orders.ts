@@ -1,5 +1,5 @@
 import { PRODUCTS } from './mock-products';
-import { Order } from './order';
+import { Order } from '../models/order';
 import { USERS } from './mock-users';
 
 export const ORDERS: Order[] = [

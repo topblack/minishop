@@ -2,43 +2,44 @@
   <img (click)="goBack()" class="backIcon" src="./assets/images/icon/back.png">
 </div>
 
-<div class="mainDiv" style="position:fixed">
+<div class="mainDiv" style="position:fixed; width:100%">
   <div class="weui-panel weui-panel_access">
-    <div class="weui-panel__bd">
+    <div class="weui-panel__bd" *ngFor="let addr of addressList">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <div style="display:inline-block">
-            <label style="font-size:small; ">张三</label>
-            <label style="font-size:small; ">13540379640</label>
-            <label style="font-size:small; display:block">上海市浦东新区荷泽路828弄1号401室</label>
+          <div style="display:inline-block" (click)="onSelectAddr(addr)">
+            <label style="font-size:small; width:50%; float:left">{{addr.consignee}}</label>
+            <label style="font-size:small; width:50%; float:right; text-align:right">{{addr.phoneNo}}</label>
+            <br>
+            <label style="font-size:small; display:block">{{addr.toDisplayAddr()}}</label>
           </div>
         </div>
       </div>
-      <div class="weui-cell" style="height:16px">
-        <label for="weuiAgree" class="weui-agree" style="display:inline-block; margin-left:0%">
-          <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" name="asDefault">
-          <span class="weui-agree__text">
-            设为默认地址
-          </span>
-        </label>
-        <div style="float:right">
-          <img class="backIcon" style="width:12px; height:12px" src="./assets/images/icon/evaluate.png">
+      <div class="weui-cell" style="height:16px; width:100%">
+        <div style="width:60%; height:auto; float:left">
+          <label for="weuiAgree" class="weui-agree" style="display:inline-block">
+            <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" name="asDefault">
+            <span class="weui-agree__text">
+              设为默认地址
+            </span>
+          </label>
+        </div>
+        <div style="width:20%; height:auto;float:right" (click)="onEditAddr(addr)">
+          <img style="width:12px; height:12px" src="./assets/images/icon/evaluate.png">
           <label style="font-size:xx-small; display:inline-block; color:rgb(163, 162, 162)">编辑</label>
         </div>
-        <div style="float:right">
-          <img class="backIcon" style="width:12px; height:12px" src="./assets/images/icon/evaluate.png">
+        <div style="width:20%; height:auto;float:right" (click)="onDeleteAddr(addr)">
+          <img style="width:12px; height:12px" src="./assets/images/icon/delete.png">
           <label style="font-size:xx-small; display:inline-block; color:rgb(163, 162, 162)">删除</label>
         </div>
       </div>
     </div>
   </div>
 
-  <button class="addBtn" weui-button>添加新地址</button>
+  <button class="addBtn" weui-button (click)="onAddAddr()">添加新地址</button>
 </div>
 
-
-<!-- 
-<weui-popup #editorPop>
+<weui-popup (cancel)="cancelEditting()" (confirm)="confirmEditting()" #editorPop>
   <div class="editorDiv">
     <div class="weui-cells weui-cell_form">
       <div class="weui-cell">
@@ -46,7 +47,7 @@
           <label class="weui-label">收货人</label>
         </div>
         <div class="weui-cell_bd">
-          <input class="weui-input" name="consignee" placeholder="请输入姓名" weui-required>
+          <input class="weui-input" name="consignee" placeholder="{{edittingAddr.consignee}}" weui-required>
         </div>
       </div>
       <div class="weui-cell weui-cell_vcode">
@@ -54,7 +55,7 @@
           <label class="weui-label">联系电话</label>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" type="tel" name="phoneNo" placeholder="请输入联系电话" weui-input="mobile" weui-required>
+          <input class="weui-input" type="tel" name="phoneNo" placeholder="{{edittingAddr.phoneNo}}" weui-input="mobile" weui-required>
         </div>
       </div>
       <div class="weui-cell">
@@ -62,25 +63,22 @@
           <label class="weui-label">所在地区</label>
         </div>
         <div class="weui-cell__bd">
-          <weui-city-picker required placeholder="请选择" name="city" [data]="cityData"></weui-city-picker>
+          <weui-city-picker required placeholder="请选择" name="city"></weui-city-picker>
         </div>
       </div>
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <input class="weui-input" type="text" placeholder="详细地址" name="detailAddr">
+          <textarea class="weui-textarea" placeholder="{{edittingAddr.detailAddr}}" rows="2" name="detailAddr" weui-textarea weui-cn="2" maxlength="50"></textarea>
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" name="asDefault">
+          <span class="weui-agree__text" style="font-size:x-small">
+            设为默认地址
+          </span>
         </div>
       </div>
     </div>
-    <label for="weuiAgree" class="weui-agree">
-      <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" name="asDefault">
-      <span class="weui-agree__text">
-        设为默认地址
-      </span>
-    </label>
   </div>
-
-  <div class="weui-form-preview__ft">
-    <a class="weui-form-preview__btn weui-form-preview__btn_default cancelBtn" (click)="cancelEdit()">取消</a>
-    <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary payBtn">保存</button>
-  </div>
-</weui-popup> -->
+</weui-popup>

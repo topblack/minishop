@@ -1,4 +1,4 @@
-import { Product } from './product';
+import { Product } from '../models/product';
 
 export const PRODUCTS: Product[] = [
     new Product('1', '泰国香水椰青', '【比你邻居买的便宜】泰国香水椰青 59.9元/9个包邮（附开椰器）',

@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { TabModule } from 'ngx-weui/tab';
-import { Product } from '../product';
-import { ProductService } from '../product.service';
+import { Product } from '../models/product';
+import { ProductService } from '../service/product.service';
 import { InfiniteLoaderComponent } from 'ngx-weui/infiniteloader';
 
 @Component({
