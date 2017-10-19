@@ -1,4 +1,5 @@
 export class Address {
+    id: string;
     consignee: string;
     phoneNo: string;
     asDefault: boolean;
@@ -8,6 +9,7 @@ export class Address {
     detailAddr: string;
 
     constructor(
+        id: string,
         consignee: string,
         phoneNo: string,
         asDefault: boolean,
@@ -16,6 +18,7 @@ export class Address {
         region: string,
         detailAddr: string
     ) {
+        this.id = id;
         this.consignee = consignee;
         this.phoneNo = phoneNo;
         this.asDefault = asDefault;

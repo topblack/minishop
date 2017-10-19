@@ -10,6 +10,7 @@ import { User } from '../models/user';
 import { ProductService } from '../service/product.service';
 
 import 'rxjs/add/operator/switchMap';
+import { UserService } from '../service/user.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location
@@ -46,6 +48,7 @@ export class ProductComponent implements OnInit {
   }
 
   shopNow(): void {
-    this.router.navigate(['/payment', this.product.id]);
+    this.userService.initOrder('001', this.product);
+    this.router.navigate(['/payment', '001']);
   }
 }

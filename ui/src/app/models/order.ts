@@ -4,30 +4,22 @@ import { Product } from './product';
 export class Order {
     id: string;
     master: User;
-    members: Array<User>;
-    product: Product;
+    pName: string;
+    pIntro: string;
+    pThumbnail: string;
+    weight: number;
+    payment: number;
 
     constructor(
         iMaster: User,
         iProduct: Product
     ) {
+        this.id = '000';
         this.master = iMaster;
-        this.product = iProduct;
-        this.members = new Array();
-    }
-
-    /**
-     * addMember
-     *
-     */
-    public addMember(member: User) {
-        this.members.push(member);
-    }
-
-    /**
-     * Check if this whole sale ready to go.
-     */
-    public isFullfilled(): boolean {
-        return this.members.length === this.product.unitReq;
+        this.pName = iProduct.name;
+        this.pIntro = iProduct.intro;
+        this.pThumbnail = iProduct.thumbnail;
+        this.weight = 5;
+        this.payment = iProduct.unitPrice;
     }
 }

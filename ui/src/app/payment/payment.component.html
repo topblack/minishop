@@ -4,9 +4,9 @@
       <div class="weui-cell__bd">
         <img style="width: 10px; height: 10px; display:inline-block" src="./assets/images/icon/address.png">
         <div style="display:inline-block">
-          <label style="font-size:small; ">张三</label>
-          <label style="font-size:small; ">13540379640</label>
-          <label style="font-size:small; display:block">上海市浦东新区荷泽路828弄1号401室</label>
+          <label style="font-size:small; ">{{address.consignee}}</label>
+          <label style="font-size:small; ">{{address.phoneNo}}</label>
+          <label style="font-size:small; display:block">{{address.toDisplayAddr()}}</label>
         </div>
       </div>
       <div class="weui-cell__ft">
@@ -16,24 +16,24 @@
 
   <div class="weui-form-preview">
     <div class="weui-form-preview__bd">
-      <img class="thumbnailImg" src={{product.thumbnail}}>
+      <img class="thumbnailImg" src={{order.pThumbnail}}>
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">商品：</label>
-        <span class="weui-form-preview__value">{{product.name}}</span>
+        <span class="weui-form-preview__value">{{order.pName}}</span>
         <div class="weui-form-preview__item">
-          <p style="text-align: left; font-size:x-small; color:darkgrey">{{product.intro}}</p>
+          <p style="text-align: left; font-size:x-small; color:darkgrey">{{order.pIntro}}</p>
         </div>
       </div>
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">重量：</label>
-        <span class="weui-form-preview__value">5斤装</span>
+        <span class="weui-form-preview__value">{{order.weight}}斤装</span>
       </div>
     </div>
 
   </div>
 
   <div class="weui-form-preview__ft">
-    <label class="paymentPrice">实付款：￥{{product.unitPrice}}</label>
+    <label class="paymentPrice">实付款：￥{{order.payment}}</label>
     <a class="weui-form-preview__btn weui-form-preview__btn_default" (click)="cancelOrder()">取消</a>
     <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary">立即支付</button>
   </div>

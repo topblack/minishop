@@ -4,36 +4,37 @@
 
 <div class="mainDiv" style="position:fixed; width:100%">
   <div class="weui-panel weui-panel_access">
-    <div class="weui-panel__bd" *ngFor="let addr of addressList">
-      <div class="weui-cell">
-        <div class="weui-cell__bd">
-          <div style="display:inline-block" (click)="onSelectAddr(addr)">
-            <label style="font-size:small; width:50%; float:left">{{addr.consignee}}</label>
-            <label style="font-size:small; width:50%; float:right; text-align:right">{{addr.phoneNo}}</label>
-            <br>
-            <label style="font-size:small; display:block">{{addr.toDisplayAddr()}}</label>
+    <weui-infiniteloader (loadmore)="onLoadMoreAddr($event)" #addrMComp>
+      <div class="weui-panel__bd" *ngFor="let addr of addressList">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div style="display:inline-block">
+              <label style="font-size:small; width:50%; float:left">{{addr.consignee}}</label>
+              <label style="font-size:small; width:50%; float:right; text-align:right">{{addr.phoneNo}}</label>
+              <br>
+              <label style="font-size:small; display:block">{{addr.toDisplayAddr()}}</label>
+            </div>
+          </div>
+        </div>
+        <div class="weui-cell" style="height:16px; width:100%">
+          <div style="width:60%; height:auto; float:left">
+            <label for="weuiAgree" class="weui-agree" style="display:inline-block" (click)="setDefaultAddr(addr)">
+              <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" name="asDefault" [ngModel]='addr.asDefault' disabled='{{addr.asDefault}}'>
+              <span class="weui-agree__text">默认地址</span>
+            </label>
+          </div>
+          <div style="width:20%; height:auto;float:right" (click)="onEditAddr(addr)">
+            <img style="width:12px; height:12px" src="./assets/images/icon/evaluate.png">
+            <label style="font-size:xx-small; display:inline-block; color:rgb(163, 162, 162)">编辑</label>
+          </div>
+          <div style="width:20%; height:auto;float:right" (click)="onDeleteAddr(addr)">
+            <img style="width:12px; height:12px" src="./assets/images/icon/delete.png">
+            <label style="font-size:xx-small; display:inline-block; color:rgb(163, 162, 162)">删除</label>
           </div>
         </div>
       </div>
-      <div class="weui-cell" style="height:16px; width:100%">
-        <div style="width:60%; height:auto; float:left">
-          <label for="weuiAgree" class="weui-agree" style="display:inline-block">
-            <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" name="asDefault">
-            <span class="weui-agree__text">
-              设为默认地址
-            </span>
-          </label>
-        </div>
-        <div style="width:20%; height:auto;float:right" (click)="onEditAddr(addr)">
-          <img style="width:12px; height:12px" src="./assets/images/icon/evaluate.png">
-          <label style="font-size:xx-small; display:inline-block; color:rgb(163, 162, 162)">编辑</label>
-        </div>
-        <div style="width:20%; height:auto;float:right" (click)="onDeleteAddr(addr)">
-          <img style="width:12px; height:12px" src="./assets/images/icon/delete.png">
-          <label style="font-size:xx-small; display:inline-block; color:rgb(163, 162, 162)">删除</label>
-        </div>
-      </div>
-    </div>
+    </weui-infiniteloader>
+
   </div>
 
   <button class="addBtn" weui-button (click)="onAddAddr()">添加新地址</button>
@@ -47,7 +48,7 @@
           <label class="weui-label">收货人</label>
         </div>
         <div class="weui-cell_bd">
-          <input class="weui-input" name="consignee" placeholder="{{edittingAddr.consignee}}" weui-required>
+          <input class="weui-input" name="consignee" weui-required [(ngModel)]='edittingAddr.consignee'> 
         </div>
       </div>
       <div class="weui-cell weui-cell_vcode">
@@ -55,7 +56,7 @@
           <label class="weui-label">联系电话</label>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" type="tel" name="phoneNo" placeholder="{{edittingAddr.phoneNo}}" weui-input="mobile" weui-required>
+          <input class="weui-input" type="tel" name="phoneNo" weui-input="mobile" weui-required [(ngModel)]='edittingAddr.phoneNo'>
         </div>
       </div>
       <div class="weui-cell">
@@ -68,12 +69,12 @@
       </div>
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea class="weui-textarea" placeholder="{{edittingAddr.detailAddr}}" rows="2" name="detailAddr" weui-textarea weui-cn="2" maxlength="50"></textarea>
+          <textarea class="weui-textarea" rows="2" name="detailAddr" weui-textarea weui-cn="2" maxlength="50" [(ngModel)]='edittingAddr.detailAddr'></textarea>
         </div>
       </div>
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" name="asDefault">
+          <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" name="asDefault" [(ngModel)]='edittingAddr.asDefault' disabled='{{edittingAddr.asDefault}}'>
           <span class="weui-agree__text" style="font-size:x-small">
             设为默认地址
           </span>
@@ -82,3 +83,6 @@
     </div>
   </div>
 </weui-popup>
+
+ <!--将对话框组件放在底部-->
+ <weui-toptips #toptips></weui-toptips>
