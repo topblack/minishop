@@ -44,6 +44,10 @@ export class ShopwindowComponent implements OnInit {
     this.router.navigate(['/detail', product.id]);
   }
 
+  gotoAddrManager(): void {
+    this.router.navigate(['/address', '001']);
+  }
+
   onSelect() {
   }
 

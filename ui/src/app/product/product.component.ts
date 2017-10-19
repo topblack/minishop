@@ -30,8 +30,8 @@ export class ProductComponent implements OnInit {
     private location: Location
   ) {
     this.route.paramMap
-    .switchMap((params: ParamMap) => this.productService.getProductById(params.get('pid')))
-    .subscribe(product => this.product = product);
+      .switchMap((params: ParamMap) => this.productService.getProductById(params.get('pid')))
+      .subscribe(product => this.product = product);
   }
 
   ngOnInit() {
@@ -39,6 +39,10 @@ export class ProductComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  gotoAccount(): void {
+    this.router.navigate(['/shopwindow', 'account']);
   }
 
   shopNow(): void {
