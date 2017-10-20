@@ -28,6 +28,7 @@ export class AddrManagerComponent implements OnInit {
   userId: string;
   user: User;
   addressList: Address[];
+  defaultAddr: Address;
   edittingAddr: Address;
   tempAddr: Address;
 
@@ -53,6 +54,7 @@ export class AddrManagerComponent implements OnInit {
     this.addrIdCounter = this.variety + 1;
     this.tempAddr = new Address('00' + this.addrIdCounter.toString(), '姓名', '联系电话', false, '请选择省', '', '', '详细地址');
     this.edittingAddr = this.tempAddr;
+    this.userService.getDefaultAddr(this.userId).then(addr => this.defaultAddr = addr);
   }
 
   // 获取 addrStepper * counter 数量的收货地址列表； 如果大于所有收货地址量，则返回全部
@@ -78,17 +80,14 @@ export class AddrManagerComponent implements OnInit {
     });
   }
 
-  // 用户双击一个地址，则返回上级页面
-  onSelectAddr(selectAddr: Address): void {
-    // this.location.back();
-  }
-
+  // 点击编辑按钮，打开编辑面板
   onEditAddr(selectAddr: Address): void {
     this.editMode = MODE_EDIT;
     this.edittingAddr = selectAddr;
     this.editorPop.show();
   }
 
+  // 点击删除按钮直接删除所选地址
   onDeleteAddr(selectAddr: Address): void {
     if (selectAddr.asDefault) {
       this.toptips.type = 'warn';
@@ -100,12 +99,14 @@ export class AddrManagerComponent implements OnInit {
     }
   }
 
+  // 点击添加新地址
   onAddAddr(): void {
     this.editMode = MODE_ADD;
     this.edittingAddr = this.tempAddr;
     this.editorPop.show();
   }
 
+  // 点击编辑面板确定，保存改动
   confirmEditting(): void {
     this.userService.editAddr(this.edittingAddr);
 
@@ -119,14 +120,18 @@ export class AddrManagerComponent implements OnInit {
     this.editMode = MODE_ADD;
   }
 
+  // 点击编辑面板取消
   cancelEditting(): void {
     this.edittingAddr = this.tempAddr;
     this.editMode = MODE_ADD;
   }
 
-  setDefaultAddr(addr: Address) {
-    this.userService.clearDefaultFlag();
-    addr.setAsDefault(true);
-    this.userService.editAddr(addr);
+  // 当点checkbox改变默认地址时，删除原有默认地址的默认标签
+  defaultAddrChange(change: boolean) {
+    if (change) {
+      this.defaultAddr.setAsDefault(false);
+      this.userService.getDefaultAddr(this.userId).then(addr => this.defaultAddr = addr);
+      this.getAddrList();
+    }
   }
 }

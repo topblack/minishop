@@ -18,8 +18,9 @@
         </div>
         <div class="weui-cell" style="height:16px; width:100%">
           <div style="width:60%; height:auto; float:left">
-            <label for="weuiAgree" class="weui-agree" style="display:inline-block" (click)="setDefaultAddr(addr)">
-              <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" name="asDefault" [ngModel]='addr.asDefault' disabled='{{addr.asDefault}}'>
+            <label for="weuiAgree" class="weui-agree" style="display:inline-block">
+              <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" name="asDefault" 
+              [(ngModel)]='addr.asDefault' (ngModelChange)="defaultAddrChange($event)" disabled='{{addr.asDefault}}'>
               <span class="weui-agree__text">默认地址</span>
             </label>
           </div>

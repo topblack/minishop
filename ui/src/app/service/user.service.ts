@@ -64,11 +64,13 @@ export class UserService {
 
   // 编辑或者添加用户收货地址
   editAddr(newAddr: Address): void {
+    if (newAddr.asDefault) {
+      this.clearDefaultFlag(newAddr);
+    }
+
     const trash = this.addrList.find(addr => addr.id === newAddr.id);
     if (trash === undefined) {
-      if (newAddr.asDefault) {
-        this.clearDefaultFlag();
-      }
+
       this.addrList.push(newAddr);
     } else {
       // const index = this.addrList.indexOf(trash);
@@ -87,9 +89,9 @@ export class UserService {
   }
 
   // 清除原有默认地址标签
-  clearDefaultFlag(): void {
+  clearDefaultFlag(newDefault: Address): void {
     const oldDefault = this.addrList.find(addr => addr.asDefault === true);
-    if (oldDefault !== undefined) {
+    if (oldDefault !== undefined && oldDefault.id !== newDefault.id) {
       oldDefault.setAsDefault(false);
     }
   }
