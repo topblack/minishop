@@ -14,7 +14,8 @@
     "@types/node": "^8.0.25",
     "express": "^4.15.4",
     "promise": "^8.0.1",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "wechat": "^2.1.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
